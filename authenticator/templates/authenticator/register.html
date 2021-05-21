@@ -1,0 +1,78 @@
+{% extends "authenticator/base.html" %}
+{% load static %}
+
+{% block body %}
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger" style="text-align:center">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" style="text-align:center">
+      <strong{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</strong>
+    </div>
+    {% endfor %}
+{% endif %}
+
+<div class="register-form">
+  <form action="{% url 'authenticator:register' %}" method="post">
+  {% csrf_token %}
+      <h2 class="text-center">Register Here</h2>
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-user"></i></div>
+        </div>
+        {{ form.first_name }}
+      </div>
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-user"></i></div>
+        </div>
+        {{ form.last_name }}
+      </div>
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-user"></i></div>
+        </div>
+        {{ form.username }}
+      </div>
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="far fa-paper-plane"></i></div>
+        </div>
+        {{ form.email }}
+      </div>
+      <!--div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-phone"></i></div>
+        </div>
+        <input type="number" class="form-control" name="mobnum" placeholder="Mobile Number" required="required">
+      </div-->
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-lock"></i></div>
+        </div>
+        {{ form.password1 }}
+      </div>
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-lock"></i></div>
+        </div>
+        {{ form.password2 }}
+      </div>
+      <div class="form-group">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+          <button type="reset" class="btn btn-primary btn-lg" style="margin-left:70px;">Reset</button>
+      </div>
+  </form>
+</div>
+
+{% endblock %}

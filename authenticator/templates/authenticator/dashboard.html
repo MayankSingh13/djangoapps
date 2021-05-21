@@ -5,6 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Django Apps</title>
 
     <!-- Link to CSS -->
@@ -19,22 +20,27 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'images/favicon_io/site.webmanifest' %}">
+
   </head>
   <body>
-    <nav class="navbar">
-      <div class="container">
-        <ul class="nav navbar-nav navbar-left">
-          <li class="active"><a href="{% url 'authenticator:index' %}" style="text-decoration:none;"><i class="fas fa-home"></i>Home</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'authenticator:register' %}" style="text-decoration:none; padding-right:8px" ><i class="fas fa-user"></i> Sign Up</a>
-          <a href="{% url 'authenticator:login' %}" style="text-decoration:none; padding-left:8px"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-        </ul>
+    <div class="dashboard-header">
+      <div class="dashboard-nav">
+        <a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><span style="color:grey;float:left;padding:12px 16px;"><i class="fas fa-bars fa-lg"></i></span></a>
+        <div class="collapse" id="collapse">
+          <a href="#">Link1</a>
+        </div>
       </div>
-    </nav>
-    <div class="container">
-      {% block body %}
-      {% endblock %}
+      <span style="text-align:right;color:grey">Last Login: {{ request.user.last_login }}</span>
+      <div class="dropdown">
+        <button class="dropbtn" style="padding-right:28px;padding-left:28px"><i class="fas fa-user"></i>&nbsp;{{ request.user.username }}</button>
+        <div class="dropdown-content">
+          <a href="{% url 'authenticator:dashboard' %}" style="font-size:16px; text-decoration:none"><i class="fas fa-tachometer-alt"></i>&nbsp;Dashboard</a>
+          <a href="{% url 'authenticator:logout' %}" style="font-size:16px; text-decoration:none"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+        </div>
+      </div>
     </div>
+
+    {% block body %}
+    {% endblock %}
   </body>
 </html>
