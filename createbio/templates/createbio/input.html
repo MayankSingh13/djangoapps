@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Create Your Bio</title>
+
+    <!-- Link to CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'createbio/style.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- Favicon link -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon_io/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon_io/site.webmanifest' %}">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <ul class="nav navbar-nav navbar-left">
+          <li class="active"><a href="{% url 'authenticator:index' %}"><img src="{% static 'images/logo.png' %}" alt="Logo" height="80px" width="180px"></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      {% block body %}
+        <h1>Welcome to the Biodata Creator App.</h1>
+        <h2>Enter your details in the form below.</h2>
+        
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger" style="text-align:center">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="biodata-form">
+          <form action="{% url 'createbio:index' %}" method="post">
+          {% csrf_token %}
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                {{ form.first_name }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                {{ form.last_name }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-phone"></i></div>
+                </div>
+                {{ form.contact }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="far fa-paper-plane"></i></div>
+                </div>
+                {{ form.email }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-address-card"></i></div>
+                </div>
+                {{ form.address }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-city"></i></div>
+                </div>
+                {{ form.city }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-address-card"></i></div>
+                </div>
+                {{ form.state }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-address-card"></i></div>
+                </div>
+                {{ form.pincode }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                {{ form.gender }}
+              </div>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-university"></i></div>
+                </div>
+                {{ form.education }}
+              </div>
+              <br>
+              <div class="form-group">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                  <button type="reset" class="btn btn-primary btn-lg" style="margin-left:70px;" value="Reset">Reset</button>
+              </div>
+          </form>
+        </div>
+      {% endblock %}
+    </div>
+  </body>
+</html>
