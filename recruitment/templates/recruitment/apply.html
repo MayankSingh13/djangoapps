@@ -1,0 +1,94 @@
+{% extends "recruitment/base.html" %}
+
+{% block body %}
+  <form action="#" method="post">
+    {% csrf_token %}
+    <div class="personal_info">
+      <h5><b>Personal Details</b></h5>
+      <div class="form-row">
+        <div class="col-5">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-user"></i></div>
+            </div>
+            {{ form.full_name }}
+          </div>
+          <small style="margin-left:40px;margin-top:-8px;margin-bottom:10px"class="form-text text-muted">(In <b>Block Letters</b> as per Xth/Matriculation Certificate)</small>
+        </div>
+        <div class="col-5">
+          <div class="input-group mb-2" style="margin-left:100px;">
+            <select>
+              <option>Father</option>
+              <option>Husband</option>
+            </select>
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-user"></i></div>
+            </div>
+            {{ form.parent_name }}
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-5">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-phone"></i></div>
+            </div>
+            {{ form.mob_no }}
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="input-group mb-2" style="margin-left:100px;">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="far fa-paper-plane"></i></div>
+            </div>
+            {{ form.email }}
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-5">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-address-card"></i></div>
+            </div>
+            {{ form.category }}
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="input-group mb-2" style="margin-left:100px;">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-city"></i></div>
+            </div>
+            {{ form.nationality }}
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-5">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-user"></i></div>
+            </div>
+            {{ form.gender }}
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="input-group mb-2" style="margin-left:100px;">
+            <div class="input-group-prepend">
+              <div class="input-group-text">BirthDate</div>
+            </div>
+            {{ form.dob }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        <button type="reset" class="btn btn-primary btn-lg" style="margin-left:70px;" value="Reset">Reset</button>
+    </div>
+  </form>
+
+{% endblock %}
