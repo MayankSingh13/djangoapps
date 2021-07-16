@@ -1,5 +1,12 @@
 from django import forms
 
+gender_choices = (
+        ('', 'Select Gender'),
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+)
+
 class ApplyForm(forms.Form):
     full_name = forms.CharField(max_length=30,
                     widget=forms.TextInput(
@@ -32,15 +39,17 @@ class ApplyForm(forms.Form):
                     )
                 )
 
-    gender = forms.CharField(max_length=12,
-                    widget=forms.TextInput(
-                    attrs={
-                        'required':'required',
-                        'placeholder':'gender',
-                        'class':'form-control',
-                        }
-                    )
-                )
+    #gender = forms.CharField(max_length=12,
+                    #widget=forms.TextInput(
+                    #attrs={
+                        #'required':'required',
+                        #'placeholder':'gender',
+                        #'class':'form-control',
+                        #}
+                    #)
+                #)
+    gender = forms.CharField(widget=forms.Select(choices=gender_choices, attrs={'class':'form-control', 'required':'required'})
+            )
 
     category = forms.CharField(max_length=15,
                     widget=forms.TextInput(
