@@ -10,3 +10,11 @@ h4 {
 h5 {
   text-align: left;
 }
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+.head {
+  
+}
